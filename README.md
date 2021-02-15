@@ -1,1 +1,0 @@
-# aviio_technical_component
