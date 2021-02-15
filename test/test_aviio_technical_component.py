@@ -2,18 +2,24 @@
 Tests for `aviio_technical_component` module.
 """
 import pytest
-from aviio_technical_component import aviio_technical_component
+import json
+from pathlib import Path
+from aviio_technical_component.aviio_technical_component import structure_data
 
 
 class TestAviio_technical_component(object):
+    test_dir = Path(__file__).absolute().parent
 
     @classmethod
-    def setup_class(cls):
-        pass
+    def load_json(cls, json_path):
+        with open(json_path) as f:
+            data = json.load(f)
 
-    def test_something(self):
-        pass
+        return data
 
-    @classmethod
-    def teardown_class(cls):
-        pass
+    def test_structure_data(self):
+        file_path = self.test_dir / "test_data" / "example_response.json"
+        test_data = self.load_json(file_path)
+        dataframe = structure_data(test_data)
+        payout_list = dataframe['payout'].to_list()
+        assert payout_list == sorted(payout_list)
