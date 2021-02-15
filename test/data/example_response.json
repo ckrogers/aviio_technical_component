@@ -1,0 +1,32 @@
+{
+  "rows": [
+    {
+      "active": true,
+      "cap": "",
+      "name": "CarInsurance.net - Native | Mon - Fri Only!",
+      "payout": "6.00",
+      "platform": "HasOffers"
+    },
+    {
+      "active": true,
+      "cap": "",
+      "name": "Pentagon Fitness Tracker",
+      "payout": "13.00",
+      "platform": "HasOffers"
+    },
+    {
+      "active": true,
+      "cap": "",
+      "name": "Fresh Tax Support | Mon - Fri Only!",
+      "payout": "33.00",
+      "platform": "HasOffers"
+    },
+    {
+      "active": true,
+      "cap": "",
+      "name": "Get Keranique - 65% off Promo",
+      "payout": "85.00",
+      "platform": "HasOffers"
+    }
+  ]
+}
