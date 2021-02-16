@@ -1,10 +1,13 @@
 """
 Tests for `aviio_technical_component` module.
 """
-import pytest
+
 import json
+import os
+import pytest
+import pandas as pd
 from pathlib import Path
-from aviio_technical_component.aviio_technical_component import structure_data
+from aviio_technical_component.aviio_technical_component import structure_data, save_to_csv
 
 
 class TestAviio_technical_component(object):
@@ -23,3 +26,9 @@ class TestAviio_technical_component(object):
         dataframe = structure_data(test_data)
         payout_list = dataframe['payout'].to_list()
         assert payout_list == sorted(payout_list)
+
+    def test_save_to_csv(self, tmpdir):
+        dataframe = pd.DataFrame()
+        output_dir = tmpdir / "test_data"
+        output_path = save_to_csv(dataframe, output_dir)
+        assert os.path.exists(output_path)
