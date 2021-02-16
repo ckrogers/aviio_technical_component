@@ -18,6 +18,11 @@ API_URL = "https://atlas.pretio.in/atlas/coding_quiz"
 
 
 def get_data_from_api():
+    """
+    Consume API endpoint, which returns a list of offers.
+    Allow retry on status 429 after waiting 60s.
+    All other http errors will be raised.
+    """
     retry_strategy = Retry(
         total=1,
         status_forcelist=[429],
@@ -35,7 +40,7 @@ def get_data_from_api():
 
 def structure_data(data):
     """
-    Structure json data from API_URL to dataframe
+    Structure json data from API_URL to dataframe.
     Sort data by ascending payout.
     """
     offers_list = data["rows"]
@@ -48,7 +53,9 @@ def structure_data(data):
 
 def save_to_csv(dataframe, output_dir=None):
     """
-    Save pandas dataframe to .csv
+    Save pandas dataframe to offers.csv.
+    Optional argument of output directory, otherwise csv will be saved to
+    ./data/offers.csv
     """
     csv_filename = "offers.csv"
     if not output_dir:
@@ -62,10 +69,9 @@ def save_to_csv(dataframe, output_dir=None):
     message = f"Data saved to path: {csv_path}"
     print(message)
     logging.info(message)
-    return csv_path
 
 
 if __name__ == "__main__":
     offers_data = get_data_from_api()
     structured_data = structure_data(offers_data)
-    path = save_to_csv(structured_data)
+    save_to_csv(structured_data)

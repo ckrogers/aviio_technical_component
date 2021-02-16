@@ -29,6 +29,7 @@ class TestAviio_technical_component(object):
         return data
 
     def test_structure_data(self):
+        """Assert data is structured and sorted by 'payout' column"""
         file_path = self.test_dir / "test_data" / "example_response.json"
         test_data = self.load_json(file_path)
         dataframe = structure_data(test_data)
@@ -36,10 +37,11 @@ class TestAviio_technical_component(object):
         assert payout_list == sorted(payout_list)
 
     def test_save_to_csv(self, tmpdir):
+        """Assert csv is saved to path provided"""
         dataframe = pd.DataFrame()
         output_dir = tmpdir / "test_data"
-        output_path = save_to_csv(dataframe, output_dir)
-        assert os.path.exists(output_path)
+        save_to_csv(dataframe, output_dir)
+        assert os.path.exists(output_dir / "offers.csv")
 
     def test_error_500(self, requests_mock):
         """Assert error is raised when faced with 500 error from call to API endpoint"""
@@ -49,9 +51,7 @@ class TestAviio_technical_component(object):
 
     @httpretty.activate
     def test_error_429(self):
-        """
-        Assert call to API endpoint is retried when faced with a 429 error
-        """
+        """Assert call to API endpoint is retried when faced with a 429 error"""
         file_path = self.test_dir / "test_data" / "example_response.json"
         test_data = self.load_json(file_path)
         mock_token = "fndsofbosabo"
