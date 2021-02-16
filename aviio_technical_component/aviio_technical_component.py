@@ -14,8 +14,6 @@ handler = logging.FileHandler("aviio_technical_component.log", "w", "utf-8")
 logger.addHandler(handler)
 
 package_dir = Path(__file__).parent.absolute()
-env_path = package_dir.parent / ".env"
-load_dotenv(env_path)
 API_TOKEN = os.getenv("TOKEN")
 API_URL = "https://atlas.pretio.in/atlas/coding_quiz"
 
@@ -62,7 +60,9 @@ def save_to_csv(dataframe, output_dir=None):
 
     csv_path = output_dir / csv_filename
     dataframe.to_csv(csv_path, index=False)
-    logging.info(f"Data saved to path: {csv_path}")
+    message = f"Data saved to path: {csv_path}"
+    print(message)
+    logging.info(message)
     return csv_path
 
 
