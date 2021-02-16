@@ -1,7 +1,12 @@
+from dotenv import load_dotenv
 import logging
 import os
 import pandas as pd
 from pathlib import Path
+import requests
+from requests.packages.urllib3.util.retry import Retry
+from requests.adapters import HTTPAdapter
+
 
 logger = logging.getLogger()
 logger.setLevel(logging.DEBUG)
@@ -9,6 +14,26 @@ handler = logging.FileHandler("aviio_technical_component.log", "w", "utf-8")
 logger.addHandler(handler)
 
 package_dir = Path(__file__).parent.absolute()
+env_path = package_dir.parent / ".env"
+load_dotenv(env_path)
+API_TOKEN = os.getenv("TOKEN")
+API_URL = "https://atlas.pretio.in/atlas/coding_quiz"
+
+
+def get_data_from_api():
+    retry_strategy = Retry(
+        total=1,
+        status_forcelist=[429],
+        method_whitelist=["HEAD", "GET"],
+        backoff_factor=60,
+    )
+    adapter = HTTPAdapter(max_retries=retry_strategy)
+    session = requests.Session()
+    session.mount("https://", adapter)
+    result = session.get(API_URL, headers={"Authorization": f"Bearer {API_TOKEN}"})
+    result.raise_for_status()
+
+    return result.json()
 
 
 def structure_data(data):
@@ -24,7 +49,7 @@ def structure_data(data):
     return df_sorted
 
 
-def save_to_csv(dataframe, output_dir: None):
+def save_to_csv(dataframe, output_dir=None):
     """
     Save pandas dataframe to .csv
     """
@@ -42,4 +67,6 @@ def save_to_csv(dataframe, output_dir: None):
 
 
 if __name__ == "__main__":
-    pass
+    offers_data = get_data_from_api()
+    structured_data = structure_data(offers_data)
+    path = save_to_csv(structured_data)
