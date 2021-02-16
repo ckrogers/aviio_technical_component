@@ -2,11 +2,8 @@
 aviio_technical_component
 =============================
 
-.. image:: https://badge.fury.io/py/aviio_technical_component.png
-    :target: http://badge.fury.io/py/aviio_technical_component
-
-.. image:: https://travis-ci.org/ckrogers/aviio_technical_component.png?branch=master
-    :target: https://travis-ci.org/ckrogers/aviio_technical_component
+.. image:: https://travis-ci.com/ckrogers/aviio_technical_component.svg?branch=main
+    :target: https://travis-ci.com/github/ckrogers/aviio_technical_component/
 
 Consumes an API endpoint (located at https://atlas.pretio.in/atlas/coding_quiz) which returns
 a list of offers. The offers are ordered by the payout and saved into a csv.
