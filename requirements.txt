@@ -1,5 +1,4 @@
 wheel>=0.22
-dotenv
 httpretty
 pandas
 pathlib
