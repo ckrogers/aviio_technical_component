@@ -14,18 +14,13 @@ if sys.argv[-1] == 'publish':
     sys.exit()
 
 readme = open('README.rst').read()
-doclink = """
-Documentation
--------------
-
-The full documentation is at http://aviio_technical_component.rtfd.org."""
 history = open('HISTORY.rst').read().replace('.. :changelog:', '')
 
 setup(
     name='aviio_technical_component',
     version='0.1.0',
     description='Consume API endpoint, handle errors, structure data to csv',
-    long_description=readme + '\n\n' + doclink + '\n\n' + history,
+    long_description=readme + '\n\n' + history,
     author='Christine K. Rogers',
     author_email='rogersckw@gmail.com',
     url='https://github.com/ckrogers/aviio_technical_component',
