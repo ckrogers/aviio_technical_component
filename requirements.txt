@@ -1,6 +1,3 @@
 wheel>=0.22
-json
-logging
-os
 pandas
 pathlib
