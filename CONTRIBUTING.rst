@@ -36,7 +36,7 @@ is open to whoever wants to implement it.
 Write Documentation
 ~~~~~~~~~~~~~~~~~~~
 
-aviio_technical_component could always use more documentation, whether as part of the 
+aviio_technical_component could always use more documentation, whether as part of the
 official aviio_technical_component docs, in docstrings, or even on the web in blog posts,
 articles, and such.
 
@@ -69,20 +69,29 @@ local development.
 
 Now you can make your changes locally.
 
-4. When you're done making changes, check that your changes pass style and unit
+4. You will require the API authorization token to consume the endpoint. This can be requested from
+Christine K. Rogers <rogersckw@gmail.com>. This should be set to an environment variable::
+
+    export TOKEN=xxxxx
+
+or in Windows::
+
+    set TOKEN=xxxxx
+
+5. When you're done making changes, check that your changes pass style and unit
    tests, including testing other Python versions with tox::
 
     $ tox
 
 To get tox, just pip install it.
 
-5. Commit your changes and push your branch to GitHub::
+6. Commit your changes and push your branch to GitHub::
 
     $ git add .
     $ git commit -m "Your detailed description of your changes."
     $ git push origin name-of-your-bugfix-or-feature
 
-6. Submit a pull request through the GitHub website.
+7. Submit a pull request through the GitHub website.
 
 .. _Fork: https://github.com/ckrogers/aviio_technical_component/fork
 
@@ -95,7 +104,7 @@ Before you submit a pull request, check that it meets these guidelines:
 2. If the pull request adds functionality, the docs should be updated. Put
    your new functionality into a function with a docstring, and add the
    feature to the list in README.rst.
-3. The pull request should work for Python 2.6, 2.7, and 3.3, and for PyPy.
+3. The pull request should work for Python 3.
    Check https://travis-ci.org/ckrogers/aviio_technical_component 
    under pull requests for active pull requests or run the ``tox`` command and
    make sure that the tests pass for all supported Python versions.
