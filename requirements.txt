@@ -1,1 +1,6 @@
 wheel>=0.22
+httpretty
+pandas
+pathlib
+requests
+requests_mock
