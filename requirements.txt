@@ -1,3 +1,7 @@
 wheel>=0.22
+dotenv
+httpretty
 pandas
 pathlib
+requests
+requests_mock
